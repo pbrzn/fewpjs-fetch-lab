@@ -14,6 +14,31 @@ function renderBooks(books) {
   });
 }
 
+function fifthBook() {
+  fetch('https://anapioficeandfire.com/api/books')
+  .then(response => response.json())
+  .then(json => console.log(json[4].name))
+}
+
+function oneThousanthAndThirtyFirstCharacter() {
+  fetch('https://anapioficeandfire.com/api/books')
+  .then(response => response.json())
+  .then(function(json) {
+    characters = json.flatMap(element => element.characters);
+    console.log(characters[1031])
+  })
+}
+
+function totalNumberOfPages() {
+  fetch('https://anapioficeandfire.com/api/books')
+  .then(response => response.json())
+  .then(function(json) {
+    pageNumbers = json.map(element => element.numberOfPages);
+    const reducer = (previousValue, currentValue) => previousValue + currentValue;
+    console.log(pageNumbers.reduce(reducer))
+  })
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   fetchBooks();
 });
